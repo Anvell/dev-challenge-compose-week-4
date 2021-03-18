@@ -13,17 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge
+package com.example.androiddevchallenge.core.theme
 
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.androiddevchallenge.presentation.launcher.LauncherActivity
-import org.junit.Rule
-import org.junit.Test
-import org.junit.runner.RunWith
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Shapes
+import androidx.compose.ui.unit.dp
 
-@RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
-    @get:Rule
-    val composeTestRule = createAndroidComposeRule<LauncherActivity>()
-}
+val shapes = Shapes(
+    small = RoundedCornerShape(6.dp),
+    medium = RoundedCornerShape(12.dp),
+    large = RoundedCornerShape(0.dp)
+)

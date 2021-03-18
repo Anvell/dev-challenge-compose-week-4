@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.ui.theme
+package com.example.androiddevchallenge.core.theme
 
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Shapes
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.Color
 
-val shapes = Shapes(
-    small = RoundedCornerShape(4.dp),
-    medium = RoundedCornerShape(4.dp),
-    large = RoundedCornerShape(0.dp)
-)
+object Colors {
+    val White = Color(0xFFFFFFFF)
+    val Alabaster = Color(0xFFFAF9FA)
+    val Mirage = Color(0xFF1B2832)
+    val BigStone = Color(0xFF162C39)
+    val Orange = Color(0xFFFFAF81)
+}

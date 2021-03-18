@@ -1,0 +1,46 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+def AndroidxVersions = [
+        Lifecycle: '2.3.0',
+        CoreKtx  : '1.3.2',
+        Appcompat: '1.3.0-beta01'
+]
+
+def TestingVersions = [
+        AndroidTest: '1.3.0',
+        JUnit      : '4.13.2',
+        JUnitExt   : '1.1.2'
+]
+
+def ComposeVersions = [
+        Core            : '1.0.0-beta02',
+        Activity        : '1.3.0-alpha04',
+        ConstraintLayout: '1.0.0-alpha04',
+]
+
+ext.Versions = [
+        AGP                    : '4.2.0-beta03',
+        Kotlin                 : '1.4.31',
+        Coroutines             : '1.4.3',
+
+        Compose                : ComposeVersions,
+        Androidx               : AndroidxVersions,
+        Testing                : TestingVersions,
+
+        Material               : '1.3.0',
+        Accompanist            : '0.6.2'
+]
