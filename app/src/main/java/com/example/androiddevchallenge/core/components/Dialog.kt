@@ -44,26 +44,23 @@ fun AppTheme.OptionDialog(
         onDismissRequest = onDismissRequest,
         buttons = {
             Column {
-                items.forEach {
-                    Divider(
-                        thickness = 2.dp,
-                        color = MaterialTheme.colors.background.copy(alpha = 0.4f)
-                    )
+                items.forEachIndexed { i, item ->
                     Row(
                         modifier = Modifier
                             .clickable {
                                 onDismissRequest()
-                                it.action()
+                                item.action()
                             }
                             .fillMaxWidth()
-                            .padding(
-                                start = dimensionResource(R.dimen.spacing_s),
-                                top = dimensionResource(R.dimen.spacing_s),
-                                bottom = dimensionResource(R.dimen.spacing_s),
-                                end = dimensionResource(R.dimen.spacing_s)
-                            )
+                            .padding(dimensionResource(R.dimen.spacing_s))
                     ) {
-                        Text(it.title, color = MaterialTheme.colors.onSecondary)
+                        Text(item.title, color = MaterialTheme.colors.onSecondary)
+                    }
+                    if (i < items.lastIndex) {
+                        Divider(
+                            thickness = 2.dp,
+                            color = MaterialTheme.colors.background.copy(alpha = 0.4f)
+                        )
                     }
                 }
             }
@@ -90,9 +87,7 @@ fun AppTheme.Dialog(
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = modifier
-                    .padding(dimensionResource(R.dimen.spacing_s))
-                    .verticalScroll(rememberScrollState())
+                modifier = modifier.verticalScroll(rememberScrollState())
             ) {
                 if (title != null) {
                     CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.high) {
