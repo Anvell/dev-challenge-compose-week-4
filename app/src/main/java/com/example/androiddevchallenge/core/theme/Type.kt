@@ -35,21 +35,6 @@ private val RalewayFontFamily = FontFamily(
 
 val typography = Typography(
     defaultFontFamily = RalewayFontFamily,
-    h1 = TextStyle(
-        fontWeight = FontWeight.Light,
-        fontSize = 28.sp,
-        letterSpacing = 1.15.sp
-    ),
-    h2 = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 15.sp,
-        letterSpacing = 1.15.sp
-    ),
-    h3 = TextStyle(
-        fontWeight = FontWeight.Bold,
-        fontSize = 14.sp,
-        letterSpacing = 0.sp
-    ),
     body1 = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,

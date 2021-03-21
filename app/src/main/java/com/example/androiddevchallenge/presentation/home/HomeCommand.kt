@@ -13,14 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.core.theme
+package com.example.androiddevchallenge.presentation.home
 
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Shapes
-import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.domain.entities.Place
 
-val shapes = Shapes(
-    small = RoundedCornerShape(6.dp),
-    medium = RoundedCornerShape(10.dp),
-    large = RoundedCornerShape(16.dp)
-)
+sealed class HomeCommand {
+    class LoadData(val place: Place) : HomeCommand()
+}

@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.core.theme
+package com.example.androiddevchallenge.presentation.home
 
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Shapes
-import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.domain.datatypes.Async
+import com.example.androiddevchallenge.domain.datatypes.Uninitialized
+import com.example.androiddevchallenge.domain.entities.Place
+import com.example.androiddevchallenge.presentation.home.data.WeatherData
 
-val shapes = Shapes(
-    small = RoundedCornerShape(6.dp),
-    medium = RoundedCornerShape(10.dp),
-    large = RoundedCornerShape(16.dp)
+data class HomeViewState(
+    val currentPlace: Place = Place.Tokyo,
+    val weatherData: Async<WeatherData> = Uninitialized,
 )

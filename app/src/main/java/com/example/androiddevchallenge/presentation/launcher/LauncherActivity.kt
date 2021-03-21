@@ -15,23 +15,23 @@
  */
 package com.example.androiddevchallenge.presentation.launcher
 
-import android.os.Bundle
-import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
+import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
+import com.example.androiddevchallenge.core.mvi.MviComposeActivity
 import com.example.androiddevchallenge.core.theme.AppTheme
 import com.example.androiddevchallenge.presentation.home.Home
-import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
+import com.example.androiddevchallenge.presentation.home.HomeCommand
+import com.example.androiddevchallenge.presentation.home.HomeViewModel
+import com.example.androiddevchallenge.presentation.home.HomeViewState
 
-class LauncherActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+class LauncherActivity : MviComposeActivity<HomeViewModel, HomeViewState, HomeCommand>() {
+    override val viewModel by viewModels<HomeViewModel>()
 
-        setContent {
-            ProvideWindowInsets {
-                AppTheme { Home() }
-            }
-        }
+    @Composable
+    override fun Сontent(
+        state: HomeViewState,
+        commands: (HomeCommand) -> Unit
+    ) {
+        AppTheme { Home(state, commands) }
     }
 }

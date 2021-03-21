@@ -10,4 +10,12 @@
   -->
 <resources>
     <string name="app_name">Android Dev Challenge</string>
+
+    <string name="common_celsius_sign">C°</string>
+    <string name="common_fahrenheit_sign">F°</string>
+    <string name="common_temperature">%s°</string>
+
+    <string name="places_new_york">New York</string>
+    <string name="places_london">London</string>
+    <string name="places_tokyo">Tokyo</string>
 </resources>

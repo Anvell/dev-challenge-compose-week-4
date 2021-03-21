@@ -13,14 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.core.theme
+package com.example.androiddevchallenge.presentation.home.extensions
 
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Shapes
-import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.domain.entities.Place
 
-val shapes = Shapes(
-    small = RoundedCornerShape(6.dp),
-    medium = RoundedCornerShape(10.dp),
-    large = RoundedCornerShape(16.dp)
-)
+@Composable
+internal fun Place.displayText(): String = when (this) {
+    Place.NewYork -> stringResource(R.string.places_new_york)
+    Place.London -> stringResource(R.string.places_london)
+    Place.Tokyo -> stringResource(R.string.places_tokyo)
+}
