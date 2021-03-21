@@ -54,14 +54,9 @@ fun AppTheme.OptionDialog(
                             .fillMaxWidth()
                             .padding(dimensionResource(R.dimen.spacing_s))
                     ) {
-                        Text(item.title, color = MaterialTheme.colors.onSecondary)
+                        Text(item.title, color = MaterialTheme.colors.onSurface)
                     }
-                    if (i < items.lastIndex) {
-                        Divider(
-                            thickness = 2.dp,
-                            color = MaterialTheme.colors.background.copy(alpha = 0.4f)
-                        )
-                    }
+                    if (i < items.lastIndex) Divider()
                 }
             }
         },
