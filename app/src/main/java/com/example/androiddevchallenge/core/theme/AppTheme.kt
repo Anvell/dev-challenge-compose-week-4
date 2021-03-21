@@ -15,4 +15,6 @@
  */
 package com.example.androiddevchallenge.core.theme
 
-object AppTheme
+object AppTheme {
+    object Icons
+}
