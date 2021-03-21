@@ -1,5 +1,7 @@
 package com.example.androiddevchallenge.presentation.home.components
 
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animate
 import androidx.compose.animation.core.infiniteRepeatable
@@ -22,27 +24,36 @@ import com.example.androiddevchallenge.domain.entities.WeatherSnapshot
 import com.example.androiddevchallenge.presentation.home.extensions.isNightTime
 
 private const val AnimationDuration = 3000
+private const val CrossfadeDuration = 600
 
 @Composable
 internal fun AnimatedBackdrop(weather: WeatherSnapshot) {
     val (base, light) = getBackdropImages(weather)
     var lightAlpha by remember { mutableStateOf(0f) }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        Image(
-            painter = base,
-            contentScale = ContentScale.Crop,
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize()
+    Crossfade(
+        targetState = weather.condition,
+        animationSpec = tween(
+            durationMillis = CrossfadeDuration,
+            easing = LinearEasing
         )
+    ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Image(
+                painter = painterResource(base),
+                contentScale = ContentScale.Crop,
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize()
+            )
 
-        Image(
-            painter = light,
-            contentScale = ContentScale.Crop,
-            contentDescription = null,
-            alpha = lightAlpha,
-            modifier = Modifier.fillMaxSize()
-        )
+            Image(
+                painter = painterResource(light),
+                contentScale = ContentScale.Crop,
+                contentDescription = null,
+                alpha = lightAlpha,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
     }
 
     LaunchedEffect(Unit) {
@@ -63,23 +74,23 @@ internal fun AnimatedBackdrop(weather: WeatherSnapshot) {
 private fun getBackdropImages(weather: WeatherSnapshot) = when (weather.condition) {
     Condition.Clear -> {
         if (weather.dateTime.isNightTime()) {
-            painterResource(R.drawable.night_base) to painterResource(R.drawable.night_volume_light)
+            R.drawable.night_base to R.drawable.night_volume_light
         } else {
-            painterResource(R.drawable.day_base) to painterResource(R.drawable.day_volume_light)
+            R.drawable.day_base to R.drawable.day_volume_light
         }
     }
     Condition.Sunny -> {
         if (weather.dateTime.isNightTime()) {
-            painterResource(R.drawable.night_base) to painterResource(R.drawable.night_volume_light)
+            R.drawable.night_base to R.drawable.night_volume_light
         } else {
-            painterResource(R.drawable.day_base) to painterResource(R.drawable.day_volume_light)
+            R.drawable.day_base to R.drawable.day_volume_light
         }
     }
     Condition.Fog -> {
         if (weather.dateTime.isNightTime()) {
-            painterResource(R.drawable.night_fog_base) to painterResource(R.drawable.night_fog_volume_light)
+            R.drawable.night_fog_base to R.drawable.night_fog_volume_light
         } else {
-            painterResource(R.drawable.day_fog_base) to painterResource(R.drawable.day_fog_base_volume_light)
+            R.drawable.day_fog_base to R.drawable.day_fog_base_volume_light
         }
     }
 }
