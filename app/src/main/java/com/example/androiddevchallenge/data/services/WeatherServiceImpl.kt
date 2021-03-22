@@ -20,35 +20,43 @@ import com.example.androiddevchallenge.domain.entities.Place
 import com.example.androiddevchallenge.domain.entities.Temperature
 import com.example.androiddevchallenge.domain.entities.WeatherSnapshot
 import com.example.androiddevchallenge.domain.services.WeatherService
+import java.time.ZoneId
 import java.time.ZonedDateTime
 import kotlin.random.Random
 
 class WeatherServiceImpl : WeatherService {
     private val rnd = Random(System.currentTimeMillis())
-    private var current: WeatherSnapshot? = null
-    private var weekForecast: List<WeatherSnapshot>? = null
+    private val data = Place.values().associate { place ->
+        place to (0..6).map { i ->
+            createRandomSnapshot(
+                dateTime = place.getDateTime().plusDays(i.toLong()),
+                condition = if (i == 0) {
+                    place.getCondition()
+                } else {
+                    createRandomCondition()
+                }
+            )
+        }
+    }
 
     override fun getCurrent(place: Place): WeatherSnapshot {
-        return current ?: createRandomSnapshot(place).also {
-            current = it
-        }
+        return data[place]!!.first()
     }
 
     override fun getWeekForecast(place: Place): List<WeatherSnapshot> {
-        return weekForecast ?: (listOf(getCurrent(place)) + (0..6).map {
-            createRandomSnapshot(place)
-        }).also {
-            weekForecast = it
-        }
+        return data[place]!!
     }
 
-    private fun createRandomSnapshot(place: Place) = WeatherSnapshot(
-        dateTime = ZonedDateTime.now(),
-        condition = place.getCondition(),
-        temperature = Temperature.Celsius(rnd.nextInt(-5, 33).toFloat()),
-        precipitation = rnd.nextInt(0, 3).toFloat(),
+    private fun createRandomSnapshot(
+        dateTime: ZonedDateTime,
+        condition: Condition = createRandomCondition()
+    ) = WeatherSnapshot(
+        dateTime = dateTime,
+        condition = condition,
+        temperature = Temperature.Celsius(rnd.nextInt(-5, 23).toFloat()),
+        precipitation = rnd.nextInt(0, 4).toFloat(),
         humidity = rnd.nextInt(54, 90),
-        pressure = rnd.nextInt(720, 1054),
+        pressure = rnd.nextInt(980, 1034),
         windSpeed = rnd.nextInt(0, 22),
     )
 
@@ -56,5 +64,15 @@ class WeatherServiceImpl : WeatherService {
         Place.NewYork -> Condition.Sunny
         Place.London -> Condition.Fog
         Place.Tokyo -> Condition.Clear
+    }
+
+    private fun createRandomCondition(): Condition {
+        return Condition.values()[rnd.nextInt(0, Condition.values().size)]
+    }
+
+    private fun Place.getDateTime() = when (this) {
+        Place.NewYork -> ZonedDateTime.now(ZoneId.of("America/New_York"))
+        Place.London -> ZonedDateTime.now(ZoneId.of("Europe/London"))
+        Place.Tokyo -> ZonedDateTime.now(ZoneId.of("Asia/Tokyo"))
     }
 }
