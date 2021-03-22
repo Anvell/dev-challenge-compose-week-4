@@ -34,7 +34,7 @@ def ComposeVersions = [
 ]
 
 ext.Versions = [
-        AGP           : '4.2.0-beta03',
+        AGP           : '7.0.0-alpha09',
         Kotlin        : '1.4.31',
         Coroutines    : '1.4.3',
         DesugarJdkLibs: '1.1.5',
