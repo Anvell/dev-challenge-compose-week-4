@@ -36,4 +36,5 @@
     <string name="places_new_york">New York</string>
     <string name="places_london">London</string>
     <string name="places_tokyo">Tokyo</string>
+    <string name="places_sydney">Sydney</string>
 </resources>

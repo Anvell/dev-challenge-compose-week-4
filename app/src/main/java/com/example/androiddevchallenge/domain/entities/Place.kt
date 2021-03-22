@@ -18,5 +18,6 @@ package com.example.androiddevchallenge.domain.entities
 enum class Place {
     NewYork,
     London,
-    Tokyo
+    Tokyo,
+    Sydney
 }

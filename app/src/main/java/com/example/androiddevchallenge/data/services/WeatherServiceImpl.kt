@@ -64,6 +64,7 @@ class WeatherServiceImpl : WeatherService {
         Place.NewYork -> Condition.Sunny
         Place.London -> Condition.Fog
         Place.Tokyo -> Condition.Clear
+        Place.Sydney -> Condition.Fog
     }
 
     private fun createRandomCondition(): Condition {
@@ -74,5 +75,6 @@ class WeatherServiceImpl : WeatherService {
         Place.NewYork -> ZonedDateTime.now(ZoneId.of("America/New_York"))
         Place.London -> ZonedDateTime.now(ZoneId.of("Europe/London"))
         Place.Tokyo -> ZonedDateTime.now(ZoneId.of("Asia/Tokyo"))
+        Place.Sydney -> ZonedDateTime.now(ZoneId.of("Australia/Sydney"))
     }
 }

@@ -25,4 +25,5 @@ internal fun Place.displayText(): String = when (this) {
     Place.NewYork -> stringResource(R.string.places_new_york)
     Place.London -> stringResource(R.string.places_london)
     Place.Tokyo -> stringResource(R.string.places_tokyo)
+    Place.Sydney -> stringResource(R.string.places_sydney)
 }
