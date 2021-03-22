@@ -4,7 +4,7 @@
 
 
 ## :scroll: Description
-The main idea for this app was to focus clean presentation along with nice animated background to showcase various weather conditions. I've prepared couple of renders: clear day/night and also foggy day/night, selecting cities from different time zones allows to quickly demonstrate various states.
+The main idea for this app was to focus on clean presentation along with nice animated background to showcase various weather conditions. I've prepared couple of renders: clear day/night and also foggy day/night, selecting cities from different time zones allows to quickly demonstrate various states.
 
 
 ## :camera_flash: Screenshots
