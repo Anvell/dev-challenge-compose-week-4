@@ -87,7 +87,6 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling:${Versions.Compose.Core}"
     implementation "androidx.activity:activity-compose:${Versions.Compose.Activity}"
     implementation "androidx.constraintlayout:constraintlayout-compose:${Versions.Compose.ConstraintLayout}"
-    implementation "androidx.navigation:navigation-compose:1.0.0-alpha09"
 
     implementation "dev.chrisbanes.accompanist:accompanist-insets:${Versions.Accompanist}"
     implementation "dev.chrisbanes.accompanist:accompanist-coil:${Versions.Accompanist}"
@@ -97,9 +96,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Androidx.Lifecycle}"
 
     testImplementation "junit:junit:${Versions.Testing.JUnit}"
+    testImplementation "io.kotest:kotest-assertions-core-jvm:${Versions.Testing.KotestAssertions}"
 
     androidTestImplementation "androidx.test.ext:junit-ktx:${Versions.Testing.JUnitExt}"
     androidTestImplementation "androidx.test:core:${Versions.Testing.AndroidTest}"
     androidTestImplementation "androidx.test:rules:${Versions.Testing.AndroidTest}"
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:${Versions.Compose.Core}"
+    androidTestImplementation "io.kotest:kotest-assertions-core-jvm:${Versions.Testing.KotestAssertions}"
 }

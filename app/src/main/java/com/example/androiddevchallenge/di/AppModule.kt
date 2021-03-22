@@ -17,6 +17,9 @@ package com.example.androiddevchallenge.di
 
 import com.example.androiddevchallenge.data.services.WeatherServiceImpl
 
+/*
+* Simple pseudo service locator which is enough for this project
+*/
 object AppModule {
 
     fun provideWeatherService() = WeatherServiceImpl()
