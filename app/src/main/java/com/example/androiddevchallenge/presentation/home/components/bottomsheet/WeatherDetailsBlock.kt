@@ -36,6 +36,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.core.components.Spacers
@@ -57,6 +59,7 @@ internal fun WeatherDetailsBlock(
 
     Row(
         modifier = Modifier
+            .semantics(mergeDescendants = true) {}
             .fillMaxWidth()
             .then(
                 when {
@@ -70,7 +73,9 @@ internal fun WeatherDetailsBlock(
         Text(
             text = title,
             style = MaterialTheme.typography.h6,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier
+                .semantics { heading() }
+                .weight(1f)
         )
         Spacers.M()
 
@@ -96,10 +101,14 @@ internal fun WeatherDetailsBlock(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
+                    .semantics(mergeDescendants = true) {}
                     .fillMaxWidth()
                     .padding(dimensionResource(R.dimen.spacing_xs))
             ) {
-                WeatherConditionIcon(weather.condition)
+                WeatherConditionIcon(
+                    condition = weather.condition,
+                    contentDescription = null
+                )
                 Spacers.Xs()
 
                 Text(

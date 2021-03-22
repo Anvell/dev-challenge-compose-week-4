@@ -27,6 +27,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
@@ -46,7 +48,10 @@ internal fun TemperatureUnitButton(
                 shape = MaterialTheme.shapes.medium
             )
             .clip(MaterialTheme.shapes.medium)
-            .clickable {
+            .clickable(
+                onClickLabel = stringResource(current.toClickLabel()),
+                role = Role.Button
+            ) {
                 onChanged(
                     when (current) {
                         TemperatureUnit.Celsius -> TemperatureUnit.Fahrenheit
@@ -63,10 +68,16 @@ internal fun TemperatureUnitButton(
             },
             fontWeight = FontWeight.Bold,
             modifier = Modifier
+                .clearAndSetSemantics {}
                 .padding(
                     horizontal = dimensionResource(R.dimen.spacing_s),
                     vertical = dimensionResource(R.dimen.spacing_xs)
                 )
         )
     }
+}
+
+private fun TemperatureUnit.toClickLabel() = when (this) {
+    TemperatureUnit.Celsius -> R.string.temperature_unit_button_label_to_fahrenheit
+    TemperatureUnit.Fahrenheit -> R.string.temperature_unit_button_label_to_celsius
 }

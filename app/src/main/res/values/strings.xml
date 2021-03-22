@@ -33,6 +33,13 @@
     <string name="weather_properties_wind">%s km/h</string>
     <string name="weather_properties_wind_description">Wind</string>
 
+    <string name="change_place_button_label">Change city</string>
+
+    <string name="temperature_unit_button_label_to_fahrenheit">Display temperature in Fahrenheit</string>
+    <string name="temperature_unit_button_label_to_celsius">Display temperature in Celsius</string>
+
+    <string name="bottom_sheet_forecast_label">Weather forecast details</string>
+
     <string name="places_new_york">New York</string>
     <string name="places_london">London</string>
     <string name="places_tokyo">Tokyo</string>

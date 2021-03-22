@@ -27,7 +27,8 @@ import com.example.androiddevchallenge.presentation.home.extensions.displayText
 @Composable
 internal fun WeatherConditionIcon(
     condition: Condition,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    contentDescription: String? = condition.displayText(),
 ) {
     val icon = when (condition) {
         Condition.Clear -> AppTheme.Icons.Sun
@@ -37,7 +38,7 @@ internal fun WeatherConditionIcon(
 
     Image(
         imageVector = icon,
-        contentDescription = condition.displayText(),
+        contentDescription = contentDescription,
         modifier = modifier
     )
 }

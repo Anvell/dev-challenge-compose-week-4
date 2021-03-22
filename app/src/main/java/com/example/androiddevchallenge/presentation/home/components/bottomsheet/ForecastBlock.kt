@@ -26,6 +26,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.paneTitle
+import androidx.compose.ui.semantics.semantics
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.core.components.Spacers
 import com.example.androiddevchallenge.domain.entities.TemperatureUnit
@@ -40,8 +42,11 @@ internal fun ForecastBlock(
 ) {
     require(weather.week.size == 7) { "Weekly forecast is expected." }
 
+    val blockLabel = stringResource(R.string.bottom_sheet_forecast_label)
+
     Column(
         modifier = Modifier
+            .semantics { paneTitle = blockLabel }
             .fillMaxWidth()
             .navigationBarsPadding()
             .padding(vertical = dimensionResource(R.dimen.spacing_m))

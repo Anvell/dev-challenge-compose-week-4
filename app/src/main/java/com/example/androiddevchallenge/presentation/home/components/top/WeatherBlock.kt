@@ -37,6 +37,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.core.components.Spacers
@@ -73,7 +74,11 @@ internal fun WeatherBlock(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.medium)
-                    .clickable(onClick = onChangePlace)
+                    .clickable(
+                        onClickLabel = stringResource(R.string.change_place_button_label),
+                        role = Role.Button,
+                        onClick = onChangePlace
+                    )
                     .padding(dimensionResource(R.dimen.spacing_xs))
             ) {
                 Icon(
