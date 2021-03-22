@@ -13,11 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.presentation.home.data
+package com.example.androiddevchallenge.domain.entities
 
-import com.example.androiddevchallenge.domain.entities.WeatherSnapshot
-
-data class WeatherData(
-    val current: WeatherSnapshot,
-    val week: List<WeatherSnapshot>
-)
+enum class TemperatureUnit {
+    Celsius, Fahrenheit
+}

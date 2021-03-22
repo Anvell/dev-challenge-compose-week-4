@@ -15,6 +15,24 @@
     <string name="common_fahrenheit_sign">F°</string>
     <string name="common_temperature">%s°</string>
 
+    <string name="common_weather_condition_clear">Clear</string>
+    <string name="common_weather_condition_sunny">Sunny</string>
+    <string name="common_weather_condition_fog">Fog</string>
+
+    <string name="common_weekdays_today">Today</string>
+
+    <string name="weather_properties_humidity">%s%%</string>
+    <string name="weather_properties_humidity_description">Humidity</string>
+
+    <string name="weather_properties_precipitation">%.1f mm</string>
+    <string name="weather_properties_precipitation_description">Precipitation</string>
+
+    <string name="weather_properties_pressure">%s hPa</string>
+    <string name="weather_properties_pressure_description">Pressure</string>
+
+    <string name="weather_properties_wind">%s km/h</string>
+    <string name="weather_properties_wind_description">Wind</string>
+
     <string name="places_new_york">New York</string>
     <string name="places_london">London</string>
     <string name="places_tokyo">Tokyo</string>

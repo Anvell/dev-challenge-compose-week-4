@@ -17,6 +17,10 @@ package com.example.androiddevchallenge.presentation.launcher
 
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
+import com.example.androiddevchallenge.core.locals.LocalSystemUiController
+import com.example.androiddevchallenge.core.locals.SystemUiController
 import com.example.androiddevchallenge.core.mvi.MviComposeActivity
 import com.example.androiddevchallenge.core.theme.AppTheme
 import com.example.androiddevchallenge.presentation.home.Home
@@ -32,6 +36,10 @@ class LauncherActivity : MviComposeActivity<HomeViewModel, HomeViewState, HomeCo
         state: HomeViewState,
         commands: (HomeCommand) -> Unit
     ) {
-        AppTheme { Home(state, commands) }
+        CompositionLocalProvider(
+            LocalSystemUiController provides remember { SystemUiController(window) }
+        ) {
+            AppTheme { Home(state, commands) }
+        }
     }
 }

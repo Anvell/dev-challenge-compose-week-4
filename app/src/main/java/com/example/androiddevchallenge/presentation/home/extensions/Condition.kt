@@ -13,11 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.presentation.home.data
+package com.example.androiddevchallenge.presentation.home.extensions
 
-import com.example.androiddevchallenge.domain.entities.WeatherSnapshot
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.domain.entities.Condition
 
-data class WeatherData(
-    val current: WeatherSnapshot,
-    val week: List<WeatherSnapshot>
-)
+@Composable
+internal fun Condition.displayText(): String = when (this) {
+    Condition.Clear -> stringResource(R.string.common_weather_condition_clear)
+    Condition.Sunny -> stringResource(R.string.common_weather_condition_sunny)
+    Condition.Fog -> stringResource(R.string.common_weather_condition_fog)
+}

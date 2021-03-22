@@ -20,8 +20,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.LocalContentColor
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,16 +31,22 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.sp
 import com.example.androiddevchallenge.core.components.OptionDialog
 import com.example.androiddevchallenge.core.components.OptionDialogItem
 import com.example.androiddevchallenge.core.theme.AppTheme
+import com.example.androiddevchallenge.core.theme.Colors
 import com.example.androiddevchallenge.domain.datatypes.Loading
 import com.example.androiddevchallenge.domain.datatypes.Success
 import com.example.androiddevchallenge.domain.entities.Place
-import com.example.androiddevchallenge.presentation.home.components.WeatherBlock
+import com.example.androiddevchallenge.domain.entities.TemperatureUnit
+import com.example.androiddevchallenge.presentation.home.components.bottomsheet.ForecastBlock
+import com.example.androiddevchallenge.presentation.home.components.top.WeatherBlock
 import com.example.androiddevchallenge.presentation.home.extensions.displayText
 import com.example.androiddevchallenge.presentation.home.extensions.isNightTime
+
+private val SheetPeekHeight = 200.sp
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -48,13 +56,20 @@ fun Home(
 ) {
     val bottomSheetState = rememberBottomSheetScaffoldState()
     var showPlaceSelection by rememberSaveable { mutableStateOf(false) }
+    var temperatureUnit by rememberSaveable { mutableStateOf(TemperatureUnit.Celsius) }
 
     Box(Modifier.fillMaxSize()) {
         BottomSheetScaffold(
             scaffoldState = bottomSheetState,
             sheetContent = {
+                state.weatherData()?.let {
+                    ForecastBlock(
+                        weather = it,
+                        temperatureUnit = temperatureUnit
+                    )
+                }
             },
-            sheetPeekHeight = 156.dp,
+            sheetPeekHeight = with(LocalDensity.current) { SheetPeekHeight.toDp() },
         ) {
             when (state.weatherData) {
                 is Loading -> {
@@ -64,11 +79,20 @@ fun Home(
                 }
                 is Success -> {
                     val weather = state.weatherData.unwrap().current
-                    AppTheme(weather.dateTime.isNightTime()) {
+
+                    CompositionLocalProvider(
+                        LocalContentColor provides if (weather.dateTime.isNightTime()) {
+                            Colors.Alabaster
+                        } else {
+                            Colors.Mirage
+                        }
+                    ) {
                         WeatherBlock(
                             place = state.currentPlace,
                             weather = weather,
-                            onChangePlace = { showPlaceSelection = true }
+                            temperatureUnit = temperatureUnit,
+                            onChangePlace = { showPlaceSelection = true },
+                            onChangeTemperatureUnit = { temperatureUnit = it }
                         )
                     }
                 }
@@ -98,4 +122,3 @@ fun Home(
         commands(HomeCommand.LoadData(state.currentPlace))
     }
 }
-

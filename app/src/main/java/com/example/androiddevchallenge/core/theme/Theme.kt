@@ -16,13 +16,10 @@
 package com.example.androiddevchallenge.core.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.LocalContentColor
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.contentColorFor
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 
 private val LightColorPalette = with(Colors) {
     lightColors(
@@ -63,10 +60,6 @@ fun AppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() 
         typography = typography,
         shapes = shapes
     ) {
-        CompositionLocalProvider(
-            LocalContentColor provides contentColorFor(MaterialTheme.colors.background)
-        ) {
-            content()
-        }
+        content()
     }
 }

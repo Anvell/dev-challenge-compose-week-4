@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge.presentation.home.data
+package com.example.androiddevchallenge.presentation.home.extensions
 
-import com.example.androiddevchallenge.domain.entities.WeatherSnapshot
+import java.time.DayOfWeek
+import java.time.format.TextStyle
+import java.util.Locale
 
-data class WeatherData(
-    val current: WeatherSnapshot,
-    val week: List<WeatherSnapshot>
-)
+internal fun DayOfWeek.getName() = getDisplayName(TextStyle.FULL_STANDALONE, Locale.getDefault())

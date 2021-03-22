@@ -54,7 +54,7 @@ class WeatherServiceImpl : WeatherService {
         dateTime = dateTime,
         condition = condition,
         temperature = Temperature.Celsius(rnd.nextInt(-5, 23).toFloat()),
-        precipitation = rnd.nextInt(0, 4).toFloat(),
+        precipitation = if (condition != Condition.Clear) rnd.nextFloat() * 4 else 0f,
         humidity = rnd.nextInt(54, 90),
         pressure = rnd.nextInt(980, 1034),
         windSpeed = rnd.nextInt(0, 22),

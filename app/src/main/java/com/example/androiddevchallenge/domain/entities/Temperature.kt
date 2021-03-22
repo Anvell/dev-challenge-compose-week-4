@@ -31,6 +31,11 @@ sealed class Temperature {
         is Fahrenheit -> value
     }
 
+    fun getValue(unit: TemperatureUnit) = when (unit) {
+        TemperatureUnit.Celsius -> asCelsius()
+        TemperatureUnit.Fahrenheit -> asFahrenheit()
+    }
+
     private fun Float.toCelsius() = (this - 32) / 1.8f
 
     private fun Float.toFahrenheit() = this * 1.8f + 32
